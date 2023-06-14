@@ -1,17 +1,18 @@
+import os #operating system
 prod = []
-
-#讀取檔案
-with open('product.csv', 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if 'product, price' in line:
-			continue # 進行檔案讀取後跳過if 條件下一迴的意思
-		name, price = line.strip().split(',') #用.split(',')做分割, 用strip()去除換行符號
-		prod.append([name, price])
-print(prod)
-
-
-
-
+if os.path.isfile('product.csv'): # os.path.isfile()檢查有無檔案
+	#讀取檔案
+	with open('product.csv', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if 'product, price' in line:
+				continue # 進行檔案讀取後跳過if 條件下一迴的意思
+			name, price = line.strip().split(',') #用.split(',')做分割, 用strip()去除換行符號
+			prod.append([name, price])
+		print(prod)
+else:
+	print('there is no file')
+	
+#使用者輸入商品價格
 while True:
 	n = input('product name:')
 	if n == 'q':
